@@ -790,9 +790,16 @@ EXPLORE_FORM_DATA_CACHE_CONFIG: CacheConfig = {
 # store cache keys by datasource UID (via CacheKey) for custom processing/invalidation
 STORE_CACHE_KEYS_IN_METADATA_DB = False
 
+# NOTE: 設定在 superset_config.py 才會生效
 # CORS Options
-ENABLE_CORS = False
-CORS_OPTIONS: dict[Any, Any] = {}
+# ENABLE_CORS = True
+# CORS_OPTIONS = {
+#     'supports_credentials': True,
+#     'allow_headers': '*',
+#     'expose_headers': '*',
+#     'resources': '*',
+#     'origins': ['http://127.0.0.1:5500'],
+# }
 
 # Sanitizes the HTML content used in markdowns to allow its rendering in a safe manner.
 # Disabling this option is not recommended for security reasons. If you wish to allow

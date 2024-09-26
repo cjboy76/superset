@@ -71,6 +71,15 @@ CACHE_CONFIG = {
 }
 DATA_CACHE_CONFIG = CACHE_CONFIG
 
+ENABLE_CORS = True
+CORS_OPTIONS = {
+    'supports_credentials': True,
+    'allow_headers': '*',
+    'expose_headers': '*',
+    'resources': '*',
+    'origins': ['http://127.0.0.1:5500'],
+}
+
 
 class CeleryConfig:
     broker_url = f"redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_CELERY_DB}"
@@ -96,8 +105,8 @@ class CeleryConfig:
 
 
 CELERY_CONFIG = CeleryConfig
-
-FEATURE_FLAGS = {"ALERT_REPORTS": True}
+# NOTE: EMBEDDED_SUPERSET 要寫在 feature flag 才會生效
+FEATURE_FLAGS = {"ALERT_REPORTS": True, "EMBEDDED_SUPERSET": True}
 ALERT_REPORTS_NOTIFICATION_DRY_RUN = True
 WEBDRIVER_BASEURL = "http://superset:8088/"  # When using docker compose baseurl should be http://superset_app:8088/
 # The base URL for the email report hyperlinks.
