@@ -77,8 +77,15 @@ CORS_OPTIONS = {
     'allow_headers': '*',
     'expose_headers': '*',
     'resources': '*',
-    'origins': ['http://127.0.0.1:5500'],
+    'origins': ['http://localhost:8088', 'http://localhost:8888', 'http://127.0.0.1:5500'],
 }
+
+# NOTE: WTF_CSRF_ENABLED 是否開啟 CSRF，開啟時打 `/guest_token/` 會需要 CSRF session token
+WTF_CSRF_ENABLED = False
+# NOTE: 控制 iframe X-Frame-Options
+TALISMAN_ENABLED = False
+# NOTE: 指定訪客角色，有寫的嵌入時才有權限看到，不然會 403 Forbidden
+GUEST_ROLE_NAME = "Gamma"
 
 
 class CeleryConfig:
