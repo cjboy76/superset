@@ -83,9 +83,42 @@ CORS_OPTIONS = {
 # NOTE: WTF_CSRF_ENABLED 是否開啟 CSRF，開啟時打 `/guest_token/` 會需要 CSRF session token
 WTF_CSRF_ENABLED = False
 # NOTE: 控制 iframe X-Frame-Options
-TALISMAN_ENABLED = False
+TALISMAN_ENABLED = True
 # NOTE: 指定訪客角色，有寫的嵌入時才有權限看到，不然會 403 Forbidden
 GUEST_ROLE_NAME = "Gamma"
+
+
+# TALISMAN_CONFIG = False
+TALISMAN_DEV_CONFIG = {
+    "content_security_policy": {
+        "base-uri": ["'self'"],
+        "default-src": ["'self'"],
+        "img-src": [
+            "'self'",
+            "blob:",
+            "data:",
+            "https://apachesuperset.gateway.scarf.sh",
+            "https://static.scarf.sh/",
+            "https://avatars.slack-edge.com",
+        ],
+        "worker-src": ["'self'", "blob:"],
+        "connect-src": [
+            "'self'",
+            "https://api.mapbox.com",
+            "https://events.mapbox.com",
+        ],
+        "object-src": "'none'",
+        "style-src": [
+            "'self'",
+            "'unsafe-inline'",
+        ],
+        "frame-ancestors": ["http://127.0.0.1:5500"],
+        "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+    },
+    "content_security_policy_nonce_in": ["script-src"],
+    "force_https": False,
+    "session_cookie_secure": False,
+}
 
 
 class CeleryConfig:
