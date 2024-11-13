@@ -77,7 +77,7 @@ CORS_OPTIONS = {
     'allow_headers': '*',
     'expose_headers': '*',
     'resources': '*',
-    'origins': ['http://localhost:8088', 'http://localhost:8888', 'http://127.0.0.1:5500', 'https://localhost:5173'],
+    'origins': ['http://localhost:5273'],
 }
 
 # NOTE: WTF_CSRF_ENABLED 是否開啟 CSRF，開啟時打 `/guest_token/` 會需要 CSRF session token
@@ -85,10 +85,8 @@ WTF_CSRF_ENABLED = True
 # NOTE: content_security_policy.frame-ancestors 解決 iframe X-Frame-Options
 TALISMAN_ENABLED = True
 # NOTE: 指定訪客角色，有寫的嵌入時才有權限看到，不然會 403 Forbidden
-GUEST_ROLE_NAME = "Gamma"
+GUEST_ROLE_NAME= 'CUSTOM'
 
-
-# TALISMAN_CONFIG = False
 TALISMAN_DEV_CONFIG = {
     "content_security_policy": {
         "base-uri": ["'self'"],
@@ -112,7 +110,7 @@ TALISMAN_DEV_CONFIG = {
             "'self'",
             "'unsafe-inline'",
         ],
-        "frame-ancestors": ["http://127.0.0.1:5500", "https://localhost:5173"],
+        "frame-ancestors": ["http://localhost:5273"],
         "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
     },
     "content_security_policy_nonce_in": ["script-src"],
